@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import NewTweetForm from "./components/NewTweetForm";
+import TweetList from "./components/TweetList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tweets: [],
+    };
+  }
+
+  handleOnNewTweet(newTweet) {
+    this.setState((prevState) => {
+      return { tweets: [...prevState.tweets, newTweet] };
+    });
+  }
+
+  render() {
+    const { tweets } = this.state;
+
+    return (
+      <div>
+        <NewTweetForm
+          onNewTweet={(newTweet) => {
+            this.handleOnNewTweet(newTweet);
+          }}
+        />
+        <TweetList tweets={tweets}></TweetList>
+      </div>
+    );
+  }
 }
-
 export default App;
