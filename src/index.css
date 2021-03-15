@@ -1,13 +1,71 @@
 body {
+  color: white;
+  background-color: #14202b;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+textarea {
+  width: 40rem;
+  height: 300px;
+  background-color: #14202b;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+}
+
+.form {
+  margin-top: 30px;
+  display: flex;
+}
+
+.formDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.tweetBtn {
+  background-color: #017bff;
+  border-radius: 5px;
+  position: relative;
+  top: 257px;
+  right: 100px;
+  width: 90px;
+  height: 40px;
+}
+
+.tweet {
+  padding: 10px;
+  background-color: #343a40;
+  margin: 10px;
+  width: 40rem;
+  border-radius: 5px;
+}
+
+.tweets {
+  margin-left: auto;
+  margin-right: auto;
+  width: 48em;
+}
+
+.userName {
+  color: darkgrey;
+}
+
+.createdTime {
+  color: darkgrey;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
 }

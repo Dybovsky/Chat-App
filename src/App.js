@@ -12,8 +12,20 @@ class App extends React.Component {
 
   onNewTweet(tweet) {
     this.setState((prevState) => {
-      return { tweets: [...prevState.tweets, tweet] };
+      return { tweets: [tweet, ...prevState.tweets] };
     });
+  }
+
+  componentWillMount() {
+    const tweets = JSON.parse(localStorage.getItem("myState"));
+    if (localStorage.getItem("myState")) {
+      this.setState({ tweets });
+    } else {
+      this.setState({ tweets: [] });
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem("myState", JSON.stringify(nextState.tweets));
   }
 
   render() {

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import TweetItem from './TweetItem'
 
@@ -5,7 +6,7 @@ function TweetsList(props){
 
     const {tweets} = props;
     return(
-        <div>
+        <div className="tweets">
             {tweets.map(tweet => 
             <TweetItem 
             tweet={tweet}

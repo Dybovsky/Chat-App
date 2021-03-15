@@ -30,9 +30,14 @@ class NewTweet extends React.Component {
 
     render(){
         return(
-            <div>
-              <form onSubmit={(event) => this.handleSubmit(event)}>
+            <div
+            className='formDiv'>
+              <form 
+              onSubmit={(event) => this.handleSubmit(event)}
+              className='form'
+              >
                 <textarea
+                placeholder=' What is on your mind'
                 // id='content'
                 // name='content'
                 value={this.state.content}
@@ -40,6 +45,7 @@ class NewTweet extends React.Component {
                 ></textarea>
 
                 <button
+                className='tweetBtn'
                 disabled={
                   this.state.chars > 140 && true
                 }
