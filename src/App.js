@@ -1,6 +1,6 @@
 import React from "react";
-import NewTweetForm from "./components/NewTweetForm";
-import TweetList from "./components/TweetList";
+import NewTweet from "./components/NewTweet";
+import TweetsList from "./components/TweetsList";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,9 +10,9 @@ class App extends React.Component {
     };
   }
 
-  handleOnNewTweet(newTweet) {
+  onNewTweet(tweet) {
     this.setState((prevState) => {
-      return { tweets: [...prevState.tweets, newTweet] };
+      return { tweets: [...prevState.tweets, tweet] };
     });
   }
 
@@ -21,14 +21,15 @@ class App extends React.Component {
 
     return (
       <div>
-        <NewTweetForm
-          onNewTweet={(newTweet) => {
-            this.handleOnNewTweet(newTweet);
+        <NewTweet
+          onNewTweet={(tweet) => {
+            this.onNewTweet(tweet);
           }}
         />
-        <TweetList tweets={tweets}></TweetList>
+        <TweetsList tweets={tweets} />
       </div>
     );
   }
 }
+
 export default App;
