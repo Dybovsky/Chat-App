@@ -6,10 +6,10 @@ function TweetsList(props){
     return(<div className='tweet'>
         <div className='title'>
             <div className='userName'>
-                <p>Mr Yonatan</p>
+                <p>{tweet.userName}</p>
             </div>
             <div className='createdTime'>
-                <p>{format(tweet.createdTime, 'Pp')}</p>
+                <p>{tweet.date}</p>
             </div>
         </div>
         <div>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { postTweet } from '../lib/api'
+import Loading from './Loading'
 
 class NewTweet extends React.Component {
     constructor(props) {
@@ -6,20 +8,24 @@ class NewTweet extends React.Component {
       this.state = {
         content: ' ',
         chars: 0,
+        
       };
     }
 
-    handleSubmit(event){
+   async handleSubmit(event){
+     const dateCreated = new Date()
       event.preventDefault()
       if(!this.state.content)
       return;
         let newTweet = {
-          id: Date.now(),
+          userName: 'Person',
+          // id: Date.now(),
           content: this.state.content,
-          createdTime: Date.now(),
+          date: dateCreated.toISOString(),
+          
         
-
         }
+        postTweet(newTweet)
         this.props.onNewTweet(newTweet)
         this.setState({content: ''})
     }
@@ -43,7 +49,7 @@ class NewTweet extends React.Component {
                 value={this.state.content}
                 onChange={(event) => this.setState({content: event.target.value, chars: event.target.value.length })}
                 ></textarea>
-
+            {/* {this.state.isLoading ? <Loading /> : <div className='helper'></div>} */}
                 <button
                 className='tweetBtn'
                 disabled={

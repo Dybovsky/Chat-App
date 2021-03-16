@@ -7,11 +7,13 @@ function TweetsList(props){
     const {tweets} = props;
     return(
         <div className="tweets">
+            
             {tweets.map(tweet => 
             <TweetItem 
             tweet={tweet}
             key={tweet.id}
-            />)}
+            />
+            )}
         </div>
     )
 

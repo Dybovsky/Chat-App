@@ -1,12 +1,15 @@
 import React from "react";
 import NewTweet from "./components/NewTweet";
 import TweetsList from "./components/TweetsList";
+import { callTweetList } from "./lib/api";
+import Loading from "./components/Loading";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tweets: [],
+      isLoading: false,
     };
   }
 
@@ -16,20 +19,18 @@ class App extends React.Component {
     });
   }
 
-  componentWillMount() {
-    const tweets = JSON.parse(localStorage.getItem("myState"));
-    if (localStorage.getItem("myState")) {
-      this.setState({ tweets });
-    } else {
-      this.setState({ tweets: [] });
-    }
+  async loadTweets() {
+    this.setState({ isLoading: true });
+    const tweets = await callTweetList();
+    this.setState({ tweets, isLoading: false });
   }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem("myState", JSON.stringify(nextState.tweets));
+
+  componentDidMount() {
+    this.loadTweets();
   }
 
   render() {
-    const { tweets } = this.state;
+    const { tweets, isLoading } = this.state;
 
     return (
       <div>
@@ -38,6 +39,9 @@ class App extends React.Component {
             this.onNewTweet(tweet);
           }}
         />
+
+        {isLoading && <Loading />}
+
         <TweetsList tweets={tweets} />
       </div>
     );
@@ -45,3 +49,6 @@ class App extends React.Component {
 }
 
 export default App;
+//  </div>
+//       {item.title && <h3>{item.title}</h3>}
+//       <div>
