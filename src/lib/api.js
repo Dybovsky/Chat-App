@@ -10,15 +10,16 @@ export async function callTweetList() {
 }
 
 export async function postTweet(tweet) {
-  const response = await axios.post(`${url}/tweet`);
-  if (response.statusCode > 200) {
-    throw new Error(response.message);
+  try {
+    const response = await axios.post(`${url}/tweet`, tweet);
+    return response;
+  } catch (e) {
+    alert(`not today: ${e.message}`);
   }
 }
-// try {
-//   const response = await axios.post(`${url}/tweet`);
-// } catch (e) {
-//   console.log(`not today: ${response.message}`);
+// const response = await axios.post(`${url}/tweet`, tweet);
+// if (response.statusCode > 200) {
+//   throw new Error(response.message);
 // }
 // }
 //   if (response.statusCode > 200) {

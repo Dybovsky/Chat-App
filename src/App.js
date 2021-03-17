@@ -27,6 +27,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.loadTweets();
+    setInterval(() => {
+      this.loadTweets();
+    }, 5000);
   }
 
   render() {
@@ -38,6 +41,7 @@ class App extends React.Component {
           onNewTweet={(tweet) => {
             this.onNewTweet(tweet);
           }}
+          isLoading={this.state.isLoading}
         />
 
         {isLoading && <Loading />}

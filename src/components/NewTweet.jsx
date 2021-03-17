@@ -1,6 +1,6 @@
 import React from 'react';
 import { postTweet } from '../lib/api'
-import Loading from './Loading'
+
 
 class NewTweet extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class NewTweet extends React.Component {
         let newTweet = {
           userName: 'Person',
           // id: Date.now(),
-          content: this.state.content,
+         content: this.state.content,
           date: dateCreated.toISOString(),
           
         
@@ -50,10 +50,11 @@ class NewTweet extends React.Component {
                 onChange={(event) => this.setState({content: event.target.value, chars: event.target.value.length })}
                 ></textarea>
             {/* {this.state.isLoading ? <Loading /> : <div className='helper'></div>} */}
+            {/* {console.log(this.state.props)} */}
                 <button
                 className='tweetBtn'
                 disabled={
-                  this.state.chars > 140 && true
+                  ((this.state.chars > 140) || (this.props.isLoading)) && true
                 }
                 >Tweet</button>
               
