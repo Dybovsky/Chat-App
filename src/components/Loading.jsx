@@ -9,12 +9,15 @@ const loader = {
     marginLeft: '45%',
     marginRight: '45%',
     marginTop: '20px',
+    
 }
  
 const Loading = ({ type, color }) => (
     
+<div>
 
-        <ReactLoading type={'spinningBubbles'} color={'#017BFF'} height={40} width={40} position={'relative'} style={loader}/> 
+    <ReactLoading type={'spinningBubbles'} color={'#017BFF'} height={40} width={40} position={'relative'} style={loader}/> 
+</div>
         
 );
  

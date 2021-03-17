@@ -3,6 +3,9 @@ import NewTweet from "./components/NewTweet";
 import TweetsList from "./components/TweetsList";
 import { callTweetList } from "./lib/api";
 import Loading from "./components/Loading";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Profile from "./components/Profile";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +32,7 @@ class App extends React.Component {
     this.loadTweets();
     setInterval(() => {
       this.loadTweets();
-    }, 5000);
+    }, 10000);
   }
 
   render() {
@@ -37,22 +40,29 @@ class App extends React.Component {
 
     return (
       <div>
-        <NewTweet
-          onNewTweet={(tweet) => {
-            this.onNewTweet(tweet);
-          }}
-          isLoading={this.state.isLoading}
-        />
+        <Router>
+          <NavBar></NavBar>
+          <Switch>
+            <Route exact path="/">
+              <NewTweet
+                onNewTweet={(tweet) => {
+                  this.onNewTweet(tweet);
+                }}
+                isLoading={this.state.isLoading}
+              />
 
-        {isLoading && <Loading />}
+              {isLoading ? <Loading /> : <div className="helper"></div>}
 
-        <TweetsList tweets={tweets} />
+              <TweetsList tweets={tweets} />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+          </Switch>
+        </Router>
       </div>
     );
   }
 }
 
 export default App;
-//  </div>
-//       {item.title && <h3>{item.title}</h3>}
-//       <div>
