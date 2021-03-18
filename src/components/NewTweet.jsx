@@ -18,8 +18,8 @@ class NewTweet extends React.Component {
       if(!this.state.content)
       return;
         let newTweet = {
-          userName: 'Person',
-          // id: Date.now(),
+          userName: this.props.newName,
+          id: Date.now(),
          content: this.state.content,
           date: dateCreated.toISOString(),
           
@@ -44,13 +44,10 @@ class NewTweet extends React.Component {
               >
                 <textarea
                 placeholder=' What is on your mind'
-                // id='content'
-                // name='content'
                 value={this.state.content}
                 onChange={(event) => this.setState({content: event.target.value, chars: event.target.value.length })}
                 ></textarea>
-            {/* {this.state.isLoading ? <Loading /> : <div className='helper'></div>} */}
-            {/* {console.log(this.state.props)} */}
+          
                 <button
                 className='tweetBtn'
                 disabled={

@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       tweets: [],
       isLoading: false,
+      newName: "",
     };
   }
 
@@ -21,6 +22,10 @@ class App extends React.Component {
       return { tweets: [tweet, ...prevState.tweets] };
     });
   }
+
+  onChangeName = (name) => {
+    this.setState({ newName: name });
+  };
 
   async loadTweets() {
     this.setState({ isLoading: true });
@@ -45,6 +50,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               <NewTweet
+                newName={this.state.newName}
                 onNewTweet={(tweet) => {
                   this.onNewTweet(tweet);
                 }}
@@ -56,7 +62,7 @@ class App extends React.Component {
               <TweetsList tweets={tweets} />
             </Route>
             <Route path="/profile">
-              <Profile />
+              <Profile onChangeName={this.onChangeName} />
             </Route>
           </Switch>
         </Router>

@@ -1,7 +1,8 @@
 import {useState} from 'react';
-const Profile = () => {
+const Profile = (props) => {
 
     const handleSubmit = (e) => {
+        props.onChangeName(name)
         e.preventDefault()
     }
 
@@ -23,6 +24,7 @@ const Profile = () => {
     </input>
     <button className='saveBtn'>Save</button>
         </form>
+       
         </div>)
 }
 
