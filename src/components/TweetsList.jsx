@@ -1,14 +1,16 @@
 
 import React from 'react';
-import TweetItem from './TweetItem'
+import TweetItem from './TweetItem';
+import {useContext} from 'react'
+import TweetsContext from './TweetsContext';
 
-function TweetsList(props){
+function TweetsList(){
 
-    const {tweets} = props;
+    const tweetList = useContext(TweetsContext)
     return(
         <div className="tweets">
             
-            {tweets.map(tweet => 
+            {tweetList.tweets.map(tweet => 
             <TweetItem 
             tweet={tweet}
             key={tweet.id}

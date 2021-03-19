@@ -6,6 +6,7 @@ import Loading from "./components/Loading";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Profile from "./components/Profile";
+import TweetsContext from "./components/TweetsContext";
 
 class App extends React.Component {
   constructor(props) {
@@ -41,34 +42,33 @@ class App extends React.Component {
   }
 
   render() {
-    const { tweets, isLoading } = this.state;
+    const { isLoading } = this.state;
 
     return (
-      <div>
-        <Router>
-          <NavBar></NavBar>
-          <Switch>
-            <Route exact path="/">
-              <NewTweet
-                newName={this.state.newName}
-                onNewTweet={(tweet) => {
-                  this.onNewTweet(tweet);
-                }}
-                isLoading={this.state.isLoading}
-              />
+      <TweetsContext.Provider value={this.state}>
+        <div>
+          <Router>
+            <NavBar></NavBar>
+            <Switch>
+              <Route exact path="/">
+                <NewTweet
+                  onNewTweet={(tweet) => {
+                    this.onNewTweet(tweet);
+                  }}
+                  //isLoading={this.state.isLoading}
+                />
 
-              {isLoading ? <Loading /> : <div className="helper"></div>}
+                {isLoading ? <Loading /> : <div className="helper"></div>}
 
-              <TweetsList tweets={tweets} />
-            </Route>
-            <Route path="/profile">
-              <Profile
-              //onChangeName={this.onChangeName}
-              />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
+                <TweetsList />
+              </Route>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </TweetsContext.Provider>
     );
   }
 }

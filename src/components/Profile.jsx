@@ -1,5 +1,5 @@
 import {useState} from 'react';
-const Profile = (props) => {
+const Profile = () => {
 
     const handleSubmit = (e) => {
         localStorage.setItem('newName', name);
