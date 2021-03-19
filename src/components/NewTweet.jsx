@@ -18,7 +18,8 @@ class NewTweet extends React.Component {
       if(!this.state.content)
       return;
         let newTweet = {
-          userName: this.props.newName,
+          userName: localStorage.getItem('newName'),
+          //  this.props.newName,
           id: Date.now(),
          content: this.state.content,
           date: dateCreated.toISOString(),

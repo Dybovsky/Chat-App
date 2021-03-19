@@ -62,7 +62,9 @@ class App extends React.Component {
               <TweetsList tweets={tweets} />
             </Route>
             <Route path="/profile">
-              <Profile onChangeName={this.onChangeName} />
+              <Profile
+              //onChangeName={this.onChangeName}
+              />
             </Route>
           </Switch>
         </Router>

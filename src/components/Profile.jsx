@@ -2,7 +2,9 @@ import {useState} from 'react';
 const Profile = (props) => {
 
     const handleSubmit = (e) => {
-        props.onChangeName(name)
+        localStorage.setItem('newName', name);
+        setName('')
+       // props.onChangeName(name)
         e.preventDefault()
     }
 
