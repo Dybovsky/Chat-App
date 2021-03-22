@@ -27,7 +27,7 @@ class NewTweet extends React.Component {
         
         }
         postTweet(newTweet)
-        this.props.onNewTweet(newTweet)
+         this.props.onNewTweet(newTweet)
         this.setState({content: ''})
     }
 

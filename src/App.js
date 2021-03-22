@@ -19,9 +19,10 @@ class App extends React.Component {
   }
 
   onNewTweet(tweet) {
-    this.setState((prevState) => {
-      return { tweets: [tweet, ...prevState.tweets] };
-    });
+    this.loadTweets();
+    // this.setState((prevState) => {
+    //   return { tweets: [tweet, ...prevState.tweets] };
+    // });
   }
 
   onChangeName = (name) => {
@@ -38,7 +39,7 @@ class App extends React.Component {
     this.loadTweets();
     setInterval(() => {
       this.loadTweets();
-    }, 10000);
+    }, 8000);
   }
 
   render() {
