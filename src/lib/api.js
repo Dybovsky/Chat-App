@@ -6,7 +6,6 @@ const url =
 export async function callTweetList() {
   const response = await axios.get(`${url}/tweet`);
   return response.data.tweets;
-  //this.setState(() => ({ tweets: data }));
 }
 
 export async function postTweet(tweet) {
@@ -17,12 +16,3 @@ export async function postTweet(tweet) {
     alert(`not today: ${e.message}`);
   }
 }
-// const response = await axios.post(`${url}/tweet`, tweet);
-// if (response.statusCode > 200) {
-//   throw new Error(response.message);
-// }
-// }
-//   if (response.statusCode > 200) {
-//     throw new Error("response.data.message");
-//   }
-// }

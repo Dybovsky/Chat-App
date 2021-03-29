@@ -50,6 +50,7 @@ class NewTweet extends React.Component {
                 ></textarea>
           
                 <button
+                type='submit'
                 className='tweetBtn'
                 disabled={
                   ((this.state.chars > 140) || (this.props.isLoading)) && true
