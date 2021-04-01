@@ -16,13 +16,12 @@ const Login = () => {
             signInFlow: 'popup',
             callbacks: {
                 signInSuccessWithAuthResult: (authResult) => {
-                    const { displayName, uid} = authResult;
+                    const { displayName, uid} = authResult.user;
                     const authUser = {
                         uid,
                         displayName,
                     }
                     authContext.login(authUser)
-                    console.log(authUser)
                     return false
                  }
             }

@@ -1,8 +1,8 @@
 
-function TweetsList(props){
+function TweetItem(props){
 
     const {tweet} = props
-
+console.log('tweet', tweet)
     return(<div className='tweet'>
         <div className='title'>
             <div className='userName'>
@@ -20,4 +20,4 @@ function TweetsList(props){
     )
 }
 
-export default TweetsList;
+export default TweetItem;
