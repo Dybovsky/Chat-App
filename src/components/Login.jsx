@@ -22,6 +22,7 @@ const Login = () => {
                         displayName,
                     }
                     authContext.login(authUser)
+                    console.log(authUser)
                     return false
                  }
             }

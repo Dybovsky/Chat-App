@@ -8,6 +8,7 @@ function TweetsList(props){
             <div className='userName'>
                 <p>{tweet.userName}</p>
             </div>
+            
             <div className='createdTime'>
                 <p>{tweet.date}</p>
             </div>

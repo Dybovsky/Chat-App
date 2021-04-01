@@ -37,7 +37,7 @@ class TweetRoom extends React.Component {
       .onSnapshot((snap) => {
         const tweets = snap.docs.map((doc) => ({
           ...doc.data(),
-          // , id: doc.id
+          id: doc.id
         }));
         this.setState({ tweets });
       });

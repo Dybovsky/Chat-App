@@ -1,46 +1,45 @@
-import React from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from "./AuthContext";
 
 
 
-class NewTweet extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        content: ' ',
-        chars: 0,
+const NewTweet = (props) => {
         
-      };
-    }
-    async handleSubmit(event){
-      const { onNewTweet } = this.props;
+    const authContext = useContext(AuthContext);
+    const { onNewTweet } = props;
+    const [content, setContent] = useState('');
+    const [chars, setChars] = useState(0);
+
+   const handleSubmit = (event) => {
       const dateCreated = new Date()
       event.preventDefault()
-      if(!this.state.content) return;
+      if(!content) return;
+      console.log(authContext.authUser)
         const newTweet = {
-          userName: localStorage.getItem('newName') ? localStorage.getItem('newName') : 'Incognito',
+          userName: authContext.authUser.displayName, 
+          //localStorage.getItem('newName') ? localStorage.getItem('newName') : 'Incognito',
          // id: Date.now(),
-          content: this.state.content,
+          content: content,
           date: dateCreated.toISOString(),
         }
-        onNewTweet(newTweet)
-        this.setState({content: ''})
+        onNewTweet(newTweet);
+        setContent(''); 
     }
+  
 
-
-   
-
-
-    render(){
         return(
             <div className='formDiv'>
               <form 
-                onSubmit={(event) => this.handleSubmit(event)}
+                onSubmit={(event) => handleSubmit(event)}
                 className='form'
               >
                 <textarea
                   placeholder=' What is on your mind'
-                  value={this.state.content}
-                  onChange={(event) => this.setState({content: event.target.value, chars: event.target.value.length })}
+                  value={content}
+                  onChange={(event) => {
+                    setContent(event.target.value);
+                    setChars(event.target.value.length)
+                  }}
                 >
 
                 </textarea>
@@ -49,7 +48,7 @@ class NewTweet extends React.Component {
                   type='submit'
                   className='tweetBtn'
                   disabled={
-                  ((this.state.chars > 140) || (this.props.isLoading)) && true
+                  ((chars > 140) || (props.isLoading)) && true
                 }
                 >
                   Tweet
@@ -59,6 +58,5 @@ class NewTweet extends React.Component {
         )
     }
 
-}
 
 export default NewTweet;
