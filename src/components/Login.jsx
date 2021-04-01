@@ -1,9 +1,11 @@
 import firebase from 'firebase/app';
 import * as firebaseui from 'firebaseui';
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useContext } from 'react';
 import 'firebaseui/dist/firebaseui.css';
+import { AuthContext } from './AuthContext';
 
 const Login = () => {
+    const authContext = useContext(AuthContext)
     useLayoutEffect(() => {
 
         const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth())
@@ -19,11 +21,12 @@ const Login = () => {
                         uid,
                         displayName,
                     }
+                    authContext.login(authUser)
                     return false
                  }
             }
           });
-    },[])
+    },[authContext])
     return(
         <div id='firebaseui-auth-container'></div>
     )
