@@ -1,14 +1,9 @@
-import React from "react";
-import NewTweet from "./components/NewTweet";
-import TweetsList from "./components/TweetsList";
-//import { callTweetList } from "./lib/api";
-import Loading from "./components/Loading";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Profile from "./components/Profile";
-import TweetsContext from "./components/TweetsContext";
+import { useState } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
+import TweetRoom from "./components/TweetRoom";
+import Login from "./components/Login";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDrLAVxwPos73UKdpbBB2Z2wybqOWwf3tc",
@@ -21,81 +16,15 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tweets: [],
-      isLoading: false,
-      newName: "",
-      unsubscribe: null,
-    };
+function App() {
+  const [authUser, setAuthUser] = useState(null);
+  if (!authUser) {
+    return <Login />;
   }
-
-  async onNewTweet(tweet) {
-    this.setState({ isLoading: true });
-    await firebase.firestore().collection("tweets").add(tweet);
-    this.setState({ isLoading: false });
-  }
-
-  onChangeName = (name) => {
-    this.setState({ newName: name });
-  };
-
-  loadTweets() {
-    const unsubscribe = firebase
-      .firestore()
-      .collection("tweets")
-      .orderBy("date", "desc")
-      .onSnapshot((snap) => {
-        const tweets = snap.docs.map((doc) => ({
-          ...doc.data(),
-          // , id: doc.id
-        }));
-        this.setState({ tweets });
-      });
-
-    this.setState({ unsubscribe });
-  }
-
-  componentDidMount() {
-    this.loadTweets();
-  }
-
-  componentWillUnmount() {
-    this.state.unsubscribe();
-  }
-
-  render() {
-    const { isLoading } = this.state;
-
-    return (
-      <TweetsContext.Provider value={this.state}>
-        <div>
-          <Router>
-            <NavBar></NavBar>
-            <Switch>
-              <Route exact path="/">
-                <NewTweet
-                  onNewTweet={(tweet) => {
-                    this.onNewTweet(tweet);
-                  }}
-                  //isLoading={this.state.isLoading}
-                />
-
-                {isLoading ? <Loading /> : <div className="helper"></div>}
-
-                <TweetsList />
-              </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-      </TweetsContext.Provider>
-    );
-  }
+  return (
+    <div>
+      <TweetRoom />
+    </div>
+  );
 }
-
 export default App;
