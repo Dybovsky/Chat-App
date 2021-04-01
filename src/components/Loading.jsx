@@ -15,7 +15,6 @@ const loader = {
 const Loading = ({ type, color }) => (
     
 <div>
-
     <ReactLoading type={'spinningBubbles'} color={'#017BFF'} height={40} width={40} position={'relative'} style={loader}/> 
 </div>
         

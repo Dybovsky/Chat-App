@@ -1,5 +1,5 @@
 import React from 'react';
-import { postTweet } from '../lib/api'
+
 
 
 class NewTweet extends React.Component {
@@ -11,22 +11,18 @@ class NewTweet extends React.Component {
         
       };
     }
-
-   async handleSubmit(event){
-     const dateCreated = new Date()
+    async handleSubmit(event){
+      const { onNewTweet } = this.props;
+      const dateCreated = new Date()
       event.preventDefault()
-      if(!this.state.content)
-      return;
-        let newTweet = {
+      if(!this.state.content) return;
+        const newTweet = {
           userName: localStorage.getItem('newName') ? localStorage.getItem('newName') : 'Incognito',
          // id: Date.now(),
           content: this.state.content,
           date: dateCreated.toISOString(),
-          
-        
         }
-        postTweet(newTweet)
-         this.props.onNewTweet(newTweet)
+        onNewTweet(newTweet)
         this.setState({content: ''})
     }
 
@@ -36,26 +32,28 @@ class NewTweet extends React.Component {
 
     render(){
         return(
-            <div
-            className='formDiv'>
+            <div className='formDiv'>
               <form 
-              onSubmit={(event) => this.handleSubmit(event)}
-              className='form'
+                onSubmit={(event) => this.handleSubmit(event)}
+                className='form'
               >
                 <textarea
-                placeholder=' What is on your mind'
-                value={this.state.content}
-                onChange={(event) => this.setState({content: event.target.value, chars: event.target.value.length })}
-                ></textarea>
+                  placeholder=' What is on your mind'
+                  value={this.state.content}
+                  onChange={(event) => this.setState({content: event.target.value, chars: event.target.value.length })}
+                >
+
+                </textarea>
           
                 <button
-                type='submit'
-                className='tweetBtn'
-                disabled={
+                  type='submit'
+                  className='tweetBtn'
+                  disabled={
                   ((this.state.chars > 140) || (this.props.isLoading)) && true
                 }
-                >Tweet</button>
-              
+                >
+                  Tweet
+                </button>
               </form>
             </div>
         )

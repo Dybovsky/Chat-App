@@ -4,11 +4,17 @@ const NavBar = () => {
     return (
       <div className='nav'>
         <Link 
-        className='navBtn'
-        to="/">Home</Link>
+            className='navBtn'
+            to="/"
+        >
+            Home
+        </Link>
         <Link
-        className='navBtn' 
-        to="/profile">Profile</Link>
+          className='navBtn' 
+          to="/profile"
+          >
+            Profile
+          </Link>
       </div>
     );
   };

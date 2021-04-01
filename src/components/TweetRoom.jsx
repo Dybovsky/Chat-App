@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Profile from "./Profile";
 import TweetsContext from "./TweetsContext";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { firestore } from '../lib/ApiFire'
+
 
 class TweetRoom extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class TweetRoom extends React.Component {
 
   async onNewTweet(tweet) {
     this.setState({ isLoading: true });
-    await firebase.firestore().collection("tweets").add(tweet);
+    await firestore.collection("tweets").add(tweet);
     this.setState({ isLoading: false });
   }
 
@@ -31,8 +31,7 @@ class TweetRoom extends React.Component {
   };
 
   loadTweets() {
-    const unsubscribe = firebase
-      .firestore()
+    const unsubscribe = firestore
       .collection("tweets")
       .orderBy("date", "desc")
       .onSnapshot((snap) => {
@@ -68,7 +67,7 @@ class TweetRoom extends React.Component {
                   onNewTweet={(tweet) => {
                     this.onNewTweet(tweet);
                   }}
-                  //isLoading={this.state.isLoading}
+              
                 />
 
                 {isLoading ? <Loading /> : <div className="helper"></div>}
