@@ -1,5 +1,5 @@
-import React from 'react';
+import { createContext } from 'react';
 
-const TweetsContext = React.createContext({tweets: null})
+const TweetsContext = createContext({tweets: null});
 
-export default TweetsContext;
+export default TweetsContext

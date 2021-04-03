@@ -1,14 +1,42 @@
+import { useEffect, useState, useContext } from "react"
+import {firestore} from '../lib/ApiFire'
+import { AuthContext } from "./AuthContext";
 
-function TweetItem(props){
 
-    const {tweet} = props
-console.log('tweet', tweet)
-    return(<div className='tweet'>
+
+const TweetItem = (props) => {
+    const authContext = useContext(AuthContext);
+    const {authUser} = authContext;
+     
+    const [sender, setSender] = useState(null);
+    const {tweet} = props;
+    const {senderId} = tweet;
+    
+  
+    console.log(props.isShow)
+
+    const isTweetFromAuthUser = senderId === authUser.uid;
+    useEffect(() => {
+        firestore
+        .collection('users')
+        .doc(senderId)
+        .get()
+        .then(doc => {
+            const sender = {
+                ...doc.data(),
+                id: doc.id,
+            }
+            setSender(sender)
+        })
+
+    },[senderId]);
+    return(
+        (props.isShow && isTweetFromAuthUser) &&
+    <div className='tweet'>
         <div className='title'>
             <div className='userName'>
-                <p>{tweet.userName}</p>
+                <p>{sender ? sender.userName : ''}</p>
             </div>
-            
             <div className='createdTime'>
                 <p>{tweet.date}</p>
             </div>
@@ -16,7 +44,10 @@ console.log('tweet', tweet)
         <div>
             {tweet.content}
         </div>
-        </div>
+    </div>
+
+    
+  
     )
 }
 

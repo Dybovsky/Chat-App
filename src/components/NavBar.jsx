@@ -1,9 +1,16 @@
 import {Link} from "react-router-dom";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from "./AuthContext";
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const [isShow, setIsShow] = useState(true)
   const authContext = useContext(AuthContext);
+
+  function handleClick(){
+    setIsShow(!isShow)
+    props.onShowAllTweets(isShow)
+    
+  }
     return (
       <div className='nav'>
         <Link 
@@ -18,6 +25,7 @@ const NavBar = () => {
           >
             Profile
           </Link>
+          <button onClick={() => handleClick()}>{isShow ? 'Show my tweets' : 'Show all'}</button>
           <button onClick={authContext.logout}>Log Out</button>
       </div>
     );

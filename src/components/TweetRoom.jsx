@@ -17,6 +17,7 @@ class TweetRoom extends React.Component {
       isLoading: false,
       newName: "",
       unsubscribe: null,
+      isShow: true,
     };
   }
 
@@ -29,6 +30,10 @@ class TweetRoom extends React.Component {
   onChangeName = (name) => {
     this.setState({ newName: name });
   };
+
+  onShowAllTweets = (val) => {
+    this.setState({isShow: val})
+  }
 
   loadTweets() {
     const unsubscribe = firestore
@@ -60,7 +65,7 @@ class TweetRoom extends React.Component {
       <TweetsContext.Provider value={this.state}>
         <div>
           <Router>
-            <NavBar></NavBar>
+            <NavBar onShowAllTweets={this.onShowAllTweets} />
             <Switch>
               <Route exact path="/">
                 <NewTweet

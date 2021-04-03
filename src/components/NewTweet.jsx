@@ -14,13 +14,14 @@ const NewTweet = (props) => {
       const dateCreated = new Date()
       event.preventDefault()
       if(!content) return;
-      console.log(authContext.authUser)
+   
         const newTweet = {
           userName: authContext.authUser.displayName, 
           //localStorage.getItem('newName') ? localStorage.getItem('newName') : 'Incognito',
          // id: Date.now(),
           content: content,
           date: dateCreated.toISOString(),
+          senderId: authContext.authUser.uid,
         }
         onNewTweet(newTweet);
         setContent(''); 

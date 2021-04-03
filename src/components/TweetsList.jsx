@@ -5,8 +5,8 @@ import {useContext} from 'react'
 import TweetsContext from './TweetsContext';
 
 function TweetsList(){
-
     const tweetList = useContext(TweetsContext)
+    
     return(
         <div className="tweets">
             
@@ -14,6 +14,7 @@ function TweetsList(){
             <TweetItem 
             tweet={tweet}
             key={tweet.id}
+            isShow={tweetList.isShow}
             />
             )}
         </div>
