@@ -145,3 +145,7 @@ textarea {
 .saveBtn:hover {
   background-color: #115cd6;
 }
+
+.hide {
+  display: none;
+}

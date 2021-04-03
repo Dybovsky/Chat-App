@@ -30,9 +30,11 @@ const TweetItem = (props) => {
         })
 
     },[senderId]);
+
+
     return(
-        (props.isShow && isTweetFromAuthUser) &&
-    <div className='tweet'>
+         
+    <div className={(props.isShow && isTweetFromAuthUser) ? 'hide tweet' : 'tweet'}>
         <div className='title'>
             <div className='userName'>
                 <p>{sender ? sender.userName : ''}</p>
@@ -45,10 +47,14 @@ const TweetItem = (props) => {
             {tweet.content}
         </div>
     </div>
-
-    
-  
     )
-}
+
+} 
+   
+
+
+
+
+
 
 export default TweetItem;
