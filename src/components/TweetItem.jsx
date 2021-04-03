@@ -13,9 +13,9 @@ const TweetItem = (props) => {
     const {senderId} = tweet;
     
   
-    console.log(props.isShow)
+    
 
-    const isTweetFromAuthUser = senderId === authUser.uid;
+    const isTweetFromAuthUser = (senderId === authUser.uid) && props.isShow;
     useEffect(() => {
         firestore
         .collection('users')
@@ -34,7 +34,7 @@ const TweetItem = (props) => {
 
     return(
          
-    <div className={(props.isShow && isTweetFromAuthUser) ? 'hide tweet' : 'tweet'}>
+    <div className={(isTweetFromAuthUser) ? 'hide tweet' : 'tweet'}>
         <div className='title'>
             <div className='userName'>
                 <p>{sender ? sender.userName : ''}</p>

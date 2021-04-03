@@ -22,11 +22,21 @@ const NavBar = (props) => {
         <Link
           className='navBtn' 
           to="/profile"
-          >
+        >
             Profile
           </Link>
-          <button onClick={() => handleClick()}>{isShow ? 'Show my tweets' : 'Show all'}</button>
-          <button onClick={authContext.logout}>Log Out</button>
+          <button 
+            onClick={() => handleClick()}
+            className='navBtn btns'
+            >
+              {isShow ? 'Show my tweets' : 'Show all'}
+          </button>
+          <button 
+            onClick={authContext.logout}
+            className='navBtn btns'
+          >
+            Log Out
+          </button>
       </div>
     );
   };

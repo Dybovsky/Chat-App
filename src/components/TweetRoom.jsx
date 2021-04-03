@@ -17,7 +17,7 @@ class TweetRoom extends React.Component {
       isLoading: false,
       newName: "",
       unsubscribe: null,
-      isShow: true,
+      isShow: false,
     };
   }
 
@@ -72,6 +72,7 @@ class TweetRoom extends React.Component {
                   onNewTweet={(tweet) => {
                     this.onNewTweet(tweet);
                   }}
+                  isShow={this.state.isShow}
               
                 />
 

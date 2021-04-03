@@ -29,7 +29,9 @@ const NewTweet = (props) => {
   
 
         return(
-            <div className='formDiv'>
+            <div 
+              className='formDiv' 
+            >
               <form 
                 onSubmit={(event) => handleSubmit(event)}
                 className='form'
@@ -41,6 +43,7 @@ const NewTweet = (props) => {
                     setContent(event.target.value);
                     setChars(event.target.value.length)
                   }}
+                  className={props.isShow && 'myTweet'}
                 >
 
                 </textarea>

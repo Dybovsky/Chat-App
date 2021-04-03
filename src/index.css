@@ -87,8 +87,8 @@ textarea {
 
 .nav {
   background-color: #343a40;
-  height: 4rem;
-  padding-top: 28px;
+  height: 4.6rem;
+  /* padding-top: 28px; */
   border-radius: 5px;
 }
 
@@ -107,7 +107,7 @@ textarea {
 .navBtn:active {
   color: #017bff;
   background-color: #c6c6c6;
-  border-bottom: 16px solid #c6c6c6;
+  //border-bottom: 16px solid #c6c6c6;
 }
 
 .wrapper {
@@ -148,4 +148,17 @@ textarea {
 
 .hide {
   display: none;
+}
+
+.btns {
+  background-color: #343a40;
+  border: none;
+  padding: 1.65rem;
+  margin-right: -2px;
+  margin-left: -10px;
+}
+
+.myTweet {
+  background-color: #343a40;
+  border: #115cd6 2px solid;
 }
